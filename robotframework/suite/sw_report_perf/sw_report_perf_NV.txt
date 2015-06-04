@@ -1,0 +1,86 @@
+*** Settings ***
+Suite Setup       Open Browser And Navigate To SSA
+Suite Teardown    Close All Browsers
+Test Teardown	  Logout And Navigate To SSA Login
+Force Tags        SWPERF
+Resource          ../../_Resources/StudyWorksKeywords.txt
+Resource          ../../_Resources/ViewDataKeywords.txt
+Library           ../../_Resources/ExtendedKeywords/Extended_Selenium_Keywords.py
+
+Library           Selenium2Library
+
+*** Variables ***
+${SW_SPM_LOGIN_NAME}                         sitepad63sponsor
+${SW_SITE_LOGIN_NAME}                        sitepad63site
+${STUDY_NAME}	                             Celgene_CC10004UC001
+#${STUDY_NAME}                                Janssen_42160443PAI300X
+${STUDY_PROTOCOL}                            //*[@id="lblStudyName"]
+${LOGPAD_STATUS_TABLE}                       dtDDL_ds_LogPadStatus_p
+${REPORT_TIMEOUT}                            2 minutes
+${SW_USER}                                   tculotti
+${SW_PASS}                                   S1rc110411
+
+
+*** Test Cases ***
+Access Report Compliance By Subject at a Site
+    [Documentation]    This test case will open the Compliance By Subject at a Site report and record timing.
+    [Tags]    CBSS
+    Login To SSA    ${SW_USER}    ${SW_PASS}
+    Capture Page Screenshot
+    Search For And Navigate To Study    ${STUDY_NAME}
+    Click Link    ${COMPLIANCE_BY_SUBJECT_AT_A_SITE}
+    Select Window With Handle    ${1}
+    Wait Until Page Contains Element    ${STUDY_PROTOCOL}    ${REPORT_TIMEOUT}
+    Select Window With Handle    ${0}
+
+Access Report Subject Enrollment and Status
+    [Documentation]    This test case will open the Subject Enrollment and Status report and record timing.
+    [Tags]    SES
+    Login To SSA    ${SW_USER}    ${SW_PASS}
+    Search For And Navigate To Study    ${STUDY_NAME}
+    Click Link    ${SUBJECT_ENROLLMENT_AND_STATUS}
+    Select Window With Handle    ${1}
+    Wait Until Page Contains Element    ${STUDY_PROTOCOL}    ${REPORT_TIMEOUT}
+    Select Window With Handle    ${0}
+
+Access Report LogPad Status and Closeout
+    [Documentation]    This test case will open the LogPad Status and Closeout report and record timing.
+    [Tags]    LSC
+    Login To SSA    ${SW_USER}    ${SW_PASS}
+    Search For And Navigate To Study    ${STUDY_NAME}
+    Click Link    ${LOGPAD_STATUS_AND_CLOSEOUT}
+    Select Window With Handle    ${1}
+    Wait Until Page Contains Element    ${STUDY_PROTOCOL}    ${REPORT_TIMEOUT}
+    Select Window With Handle    ${0}
+
+Access Report LogPad Status and Closeout with Filter
+    [Documentation]    This test case will open the LogPad Status and Closeout report with applied filer and record timing.
+    [Tags]    LSCF
+    Login To SSA    ${SW_USER}    ${SW_PASS}
+    Search For And Navigate To Study    ${STUDY_NAME}
+    Click Link    ${LOGPAD_STATUS_AND_CLOSEOUT}
+    Select Window With Handle    ${1}
+    Wait Until Page Contains Element    ${STUDY_PROTOCOL}    ${REPORT_TIMEOUT}
+    Click Button    ${APPLY_FILTERS_BUTTON}
+    Wait Until Page Contains Element    ${LOGPAD_STATUS_TABLE}    ${REPORT_TIMEOUT}
+    Select Window With Handle    ${0}
+
+Access Report Questionnaire Completion by Visit
+    [Documentation]    This test case will open the Questionnaire Completion by Visit report and record timing.
+    [Tags]    QCV
+    Login To SSA    ${SW_USER}    ${SW_PASS}
+    Search For And Navigate To Study    ${STUDY_NAME}
+    Click Link    ${QUESTIONNAIRE_COMPLETION_BY_VISIT}
+    Select Window With Handle    ${1}
+    Wait Until Page Contains Element    ${STUDY_PROTOCOL}    ${REPORT_TIMEOUT}
+    Select Window With Handle    ${0}
+
+Access Report Study Enrollment and Status
+    [Documentation]    This test case will open the Subject Enrollment and Status report and record timing.
+    [Tags]    SES
+    Login To SSA    ${SW_USER}    ${SW_PASS}
+    Search For And Navigate To Study    ${STUDY_NAME}
+    Click Link    ${STUDY_ENROLLMENT_AND_STATUS}
+    Select Window With Handle    ${1}
+    Wait Until Page Contains Element    ${STUDY_PROTOCOL}    ${REPORT_TIMEOUT}
+    Select Window With Handle    ${0}

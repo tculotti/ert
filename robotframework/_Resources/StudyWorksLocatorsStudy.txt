@@ -1,0 +1,8 @@
+*** Variables ***
+#Study Locators
+${COMPLIANCE_BY_SUBJECT_AT_A_SITE}      Compliance by Subject at a Site
+${SUBJECT_ENROLLMENT_AND_STATUS}        Subject Enrollment and Status
+${LOGPAD_STATUS_AND_CLOSEOUT}           LogPad Status and Closeout
+${QUESTIONNAIRE_COMPLETION_BY_VISIT}    Questionnaire Completion by Visit
+${STUDY_ENROLLMENT_AND_STATUS}          Study Enrollment and Status
+${APPLY_FILTERS_BUTTON}                 btnApplyFilter
